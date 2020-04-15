@@ -12,20 +12,8 @@
 *
 *******************************************************************************/
 #include <stdio.h>
-#include <driver_types.h>
 
 void getInfo(){
-  
-  cudaError_t err;
-  err = cudaDeviceReset();
-
-  cudaDeviceProp prop;
-  int count;
-  enumcudaError err = cudaGetDeviceCount(&count);
-  if(err != cudaSuccess){
-    printf("problem getting device count = %s\n", cudaGetErrorString(err));
-    return 1;
-    }
 
     printf("\tName: %s\n", prop.name);
     printf("\tTotal global mem: %ld\n", prop.totalGlobalMem );
