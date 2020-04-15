@@ -15,6 +15,8 @@
 
 void getInfo(){
 
+  cudaDeviceProp prop;
+
     printf("\tName: %s\n", prop.name);
     printf("\tTotal global mem: %ld\n", prop.totalGlobalMem );
     printf( "\tShared mem per processor: %ld\n", prop.sharedMemPerBlock );
@@ -28,7 +30,7 @@ void getInfo(){
 
     printf("\n");
 
-}
+
 
 /******************************************************************************/
 int main(int argc, char *argv[]){
