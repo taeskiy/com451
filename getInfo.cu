@@ -12,12 +12,15 @@
 *
 *******************************************************************************/
 #include <stdio.h>
-
+#include <thread>
 void getInfo(){
 
   cudaDeviceProp prop;
+  
+  unsigned int numCores = std::thread::hardware_concurrency();
 
     printf("\tName: %s\n", prop.name);
+    printf("num CPU cores on this machine: %d\n", numCores);
     printf("\tTotal global mem: %ld\n", prop.totalGlobalMem );
     printf( "\tShared mem per processor: %ld\n", prop.sharedMemPerBlock );
     printf( "\tMax threads per block: %d\n", prop.maxThreadsPerBlock );
