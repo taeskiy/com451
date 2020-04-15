@@ -15,7 +15,7 @@
 
 void getInfo(){
   
-cudaError_t err;
+  cudaError_t err;
   err = cudaDeviceReset();
 
   cudaDeviceProp prop;
@@ -29,17 +29,19 @@ cudaError_t err;
     printf("\tTotal global mem: %ld\n", prop.totalGlobalMem );
     printf( "\tShared mem per processor: %ld\n", prop.sharedMemPerBlock );
     printf( "\tMax threads per block: %d\n", prop.maxThreadsPerBlock );
-    printf( "\tMax block dimensions: (%d, %d, %d)\n",
+    printf( "\tMax block dimensions: (%d, %d, %d)\n", 
+                  prop.maxThreadsDim[0],
+                  prop.maxThreadsDim[1],
+                  prop.maxThreadsDim[2]);
     printf("\tTotal constant Mem: %ld\n", prop.totalConstMem );
     printf( "\tMultiprocessor count: %d\n", prop.multiProcessorCount ); 
+
     printf("\n");
 
-}
+
 
 /******************************************************************************/
 int main(int argc, char *argv[]){
-
-getInfo();
 
 return 0;
 }
