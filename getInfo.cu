@@ -12,12 +12,14 @@
 *
 *******************************************************************************/
 #include <stdio.h>
+#include <thread>
 #include "cuda_runtime.h"
 using namespace std;
 
 /******************************************************************************/
 int main(int argc, char *argv[]){
-
+  
+  unsigned int numCores = std::thread::hardware_concurrency();
   cudaError_t err;
   err = cudaDeviceReset();
 
@@ -29,6 +31,8 @@ int main(int argc, char *argv[]){
     return 1;
     }
   printf("number of GPU devices: %d\n\n", count);
+
+   printf("\tNum CPU cores on this machine: %d\n", numCores);
 
   for (int i = 0; i< count; i++){
     printf("************ GPU Device: %d ************\n\n", i);
