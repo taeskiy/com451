@@ -4,23 +4,41 @@
 *
 *   compile with:
 *
-*			nvcc probe2.cu -L/usr/local/cuda/lib64 -I/usr/local/cuda-10.2/targets/x86_64-linux/include -lcuda -lcudart
+*     nvcc probe2.cu -L/usr/local/cuda/lib64 -I/usr/local/cuda-10.2/targets/x86_64-linux/include -lcuda -lcudart
 *
-*			(in .tcshrc, please have:)
-*			set path = ($path /usr/local/cuda-10.1/bin ./)
-*			setenv LD_LIBRARY_PATH /usr/local/lib:/usr/local/cuda-10.1/lib64
+*     (in .tcshrc, please have:)
+*     set path = ($path /usr/local/cuda-10.1/bin ./)
+*     setenv LD_LIBRARY_PATH /usr/local/lib:/usr/local/cuda-10.1/lib64
 *
 *******************************************************************************/
 #include <stdio.h>
 #include <thread>
 void getInfo(){
 
+  cudaError_t err;
+  err = cudaDeviceReset();
+
   cudaDeviceProp prop;
+  int count;
+  err = cudaGetDeviceCount(&count);
+  if(err != cudaSuccess){
+    printf("problem getting device count = %s\n", cudaGetErrorString(err));
+    return 1;
+    }
+  printf("number of GPU devices: %d\n\n", count);
+
+  for (int i = 0; i< count; i++){
+    printf("************ GPU Device: %d ************\n\n", i);
+    err = cudaGetDeviceProperties(&prop, i);
+    if(err != cudaSuccess){
+      printf("problem getting device properties = %s\n", cudaGetErrorString(err));
+      return 1;
+      }
   
   unsigned int numCores = std::thread::hardware_concurrency();
 
     printf("\tName: %s\n", prop.name);
-    printf("num CPU cores on this machine: %d\n", numCores);
+    printf("\tNum CPU cores on this machine: %d\n", numCores);
     printf("\tTotal global mem: %ld\n", prop.totalGlobalMem );
     printf( "\tShared mem per processor: %ld\n", prop.sharedMemPerBlock );
     printf( "\tMax threads per block: %d\n", prop.maxThreadsPerBlock );
@@ -32,7 +50,7 @@ void getInfo(){
     printf( "\tMultiprocessor count: %d\n", prop.multiProcessorCount ); 
 
     printf("\n");
-
+}
 }
 
 /******************************************************************************/
