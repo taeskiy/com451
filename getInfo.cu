@@ -13,7 +13,7 @@
 *******************************************************************************/
 #include <stdio.h>
 #include <thread>
-void getInfo(){
+global void getInfo(){
 
   cudaError_t err;
   err = cudaDeviceReset();
