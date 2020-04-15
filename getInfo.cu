@@ -19,6 +19,7 @@ void getInfo(){
   err = cudaDeviceReset();
 
   cudaDeviceProp prop;
+  int count;
   err = cudaGetDeviceCount(&count);
   if(err != cudaSuccess){
     printf("problem getting device count = %s\n", cudaGetErrorString(err));
@@ -42,6 +43,8 @@ void getInfo(){
 
 /******************************************************************************/
 int main(int argc, char *argv[]){
+
+getInfo();
 
 return 0;
 }
