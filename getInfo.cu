@@ -12,7 +12,8 @@
 *
 *******************************************************************************/
 #include <stdio.h>
-#include <string.h>
+#include <driver_types.h>
+
 void getInfo(){
   
   cudaError_t err;
@@ -20,7 +21,7 @@ void getInfo(){
 
   cudaDeviceProp prop;
   int count;
-  err = cudaGetDeviceCount(&count);
+  enumcudaError err = cudaGetDeviceCount(&count);
   if(err != cudaSuccess){
     printf("problem getting device count = %s\n", cudaGetErrorString(err));
     return 1;
