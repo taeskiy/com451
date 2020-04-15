@@ -32,7 +32,7 @@ int main(int argc, char *argv[]){
     }
   printf("number of GPU devices: %d\n\n", count);
 
-   printf("\tNum CPU cores on this machine: %d\n", numCores);
+   printf("*********Num CPU cores on this machine: %d\n*********", numCores);
 
   for (int i = 0; i< count; i++){
     printf("************ GPU Device: %d ************\n\n", i);
