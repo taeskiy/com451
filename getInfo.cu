@@ -12,7 +12,7 @@
 *
 *******************************************************************************/
 #include <stdio.h>
-
+#include <string.h>
 void getInfo(){
   
   cudaError_t err;
@@ -38,7 +38,7 @@ void getInfo(){
     printf( "\tMultiprocessor count: %d\n", prop.multiProcessorCount ); 
 
     printf("\n");
-}
+
 
 
 /******************************************************************************/
