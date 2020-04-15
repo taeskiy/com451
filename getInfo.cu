@@ -38,7 +38,7 @@ void getInfo(){
     printf( "\tMultiprocessor count: %d\n", prop.multiProcessorCount ); 
 
     printf("\n");
-
+}
 
 
 /******************************************************************************/
